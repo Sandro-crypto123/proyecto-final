@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SimulaRutas La Paz — Simulador de Costo de Transporte</title>
+  <link rel="stylesheet" href="estilos\estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="nav-logo">
+        <span class="logo-icon">🚌</span>
+        <span class="logo-text">SimulaRutas <span class="logo-accent">La Paz</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#contexto">Contexto</a></li>
+        <li><a href="#simulador">Simulador</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#casos">Casos de Estudio</a></li>
+        <li><a href="#conclusiones">Conclusiones</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </nav>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#inicio">Inicio</a>
+      <a href="#contexto">Contexto</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#casos">Casos de Estudio</a>
+      <a href="#conclusiones">Conclusiones</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-badge">desafio</div>
+      <h1 class="hero-title">
+        Simulador de<br />
+        <span class="accent-text">Costo de Transporte</span><br />
+        en La Paz, Bolivia
+      </h1>
+      <p class="hero-desc">
+        Tras la eliminación de la subvención a los combustibles en diciembre de 2025,
+        las tarifas del transporte en La Paz aumentaron considerablemente.
+        Esta herramienta te permite calcular cuánto más gastas en transporte
+        cuando hay desvíos, bloqueos o rutas alternativas.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-val">Bs 2,40</span>
+          <span class="stat-label">Tarifa anterior (tramo corto)</span>
+        </div>
+        <div class="stat-card accent">
+          <span class="stat-val">Bs 3,00</span>
+          <span class="stat-label">Tarifa actual (tramo corto)</span>
+        </div>
+        <div class="stat-card warning">
+          <span class="stat-val">+25%</span>
+          <span class="stat-label">Incremento mínibús</span>
+        </div>
+      </div>
+      <a href="#simulador" class="btn-hero">Ir al Simulador ↓</a>
+    </section>
+    <section id="contexto" class="section-contexto">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Contexto real</span>
+          <h2>¿Qué está pasando con el transporte en La Paz?</h2>
+        </div>
+        <div class="contexto-grid">
+          <div class="ctx-card">
+            <div class="ctx-icon">⛽</div>
+            <h3>Eliminación de subvenciones</h3>
+            <p>El 17 de diciembre de 2025, el Decreto Supremo 5503 eliminó la subvención a los combustibles en Bolivia, provocando un alza inmediata en el precio del diésel y la gasolina.</p>
+          </div>
+          <div class="ctx-card">
+            <div class="ctx-icon">📈</div>
+            <h3>Nuevas tarifas 2025–2026</h3>
+            <p>La Alcaldía de La Paz fijó tarifas transitorias desde el 2025: minibús tramo corto <strong>Bs 3,00</strong>, tramo largo <strong>Bs 3,50</strong>. Antes costaba Bs 2,40 y Bs 3,00 respectivamente.</p>
+          </div>
+          <div class="ctx-card">
+            <div class="ctx-icon">🚧</div>
+            <h3>Bloqueos y desvíos</h3>
+            <p>Conflictos sociales, marchas y bloqueos en la ciudad obligan a los vehículos a tomar rutas más largas, aumentando el consumo de combustible y los costos de viaje.</p>
+          </div>
+          <div class="ctx-card">
+            <div class="ctx-icon">👨‍👩‍👧‍👦</div>
+            <h3>Impacto familiar</h3>
+            <p>Una familia paceña promedio utiliza 2–4 viajes diarios por persona. El incremento en las tarifas representa un gasto adicional mensual significativo en el presupuesto familiar.</p>
+          </div>
+        </div>
+
+        <div class="tarifas-tabla">
+          <h3>Tarifas vigentes en La Paz</h3>
+          <div class="tabla-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tipo de Vehículo</th>
+                  <th>Tramo Corto (antes)</th>
+                  <th>Tramo Corto (ahora)</th>
+                  <th>Tramo Largo (antes)</th>
+                  <th>Tramo Largo (ahora)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Minibús / Carry</td>
+                  <td class="before">Bs 2,40</td>
+                  <td class="after">Bs 3,00</td>
+                  <td class="before">Bs 3,00</td>
+                  <td class="after">Bs 3,50</td>
+                </tr>
+                <tr>
+                  <td>Micro / Bus</td>
+                  <td class="before">Bs 1,80</td>
+                  <td class="after">Bs 2,50</td>
+                  <td class="before">Bs 2,00</td>
+                  <td class="after">Bs 2,50</td>
+                </tr>
+                <tr>
+                  <td>Trufi (tramo largo)</td>
+                  <td class="before">—</td>
+                  <td class="after">Bs 4,00</td>
+                  <td class="before">—</td>
+                  <td class="after">Bs 4,50</td>
+                </tr>
+                <tr>
+                  <td>Minibús nocturno</td>
+                  <td class="before">Bs 2,50</td>
+                  <td class="after">Bs 3,30</td>
+                  <td class="before">Bs 3,20</td>
+                  <td class="after">Bs 3,80</td>
+                </tr>
+                <tr>
+                  <td>Tarifa diferenciada (estud./adulto mayor)</td>
+                  <td class="before">Bs 2,00</td>
+                  <td class="after">Bs 2,50</td>
+                  <td class="before">Bs 2,60</td>
+                  <td class="after">Bs 3,00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="simulador" class="section-simulador">
+      <div class="container">
+        <div class="section-header light">
+          <span class="section-tag alt">Simulador interactivo</span>
+          <h2>Calcula tu gasto de transporte</h2>
+          <p>Ingresa tus datos de ruta y simula cuánto gastas con desvíos o rutas alternativas.</p>
+        </div>
+
+        <div class="simulador-card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="tipoVehiculo">Tipo de vehículo</label>
+              <select id="tipoVehiculo">
+                <option value="minibus_corto">Minibús — Tramo Corto (Bs 3,00)</option>
+                <option value="minibus_largo">Minibús — Tramo Largo (Bs 3,50)</option>
+                <option value="micro">Micro / Bus (Bs 2,50)</option>
+                <option value="trufi_largo">Trufi — Tramo Largo (Bs 4,00)</option>
+                <option value="minibus_nocturno">Minibús Nocturno — Corto (Bs 3,30)</option>
+                <option value="diferenciado">Tarifa Diferenciada (Bs 2,50)</option>
+                <option value="personalizado">Tarifa personalizada...</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="grupoTarifaPersonalizada" style="display:none;">
+              <label for="tarifaPersonalizada">Tarifa por pasaje (Bs)</label>
+              <input type="number" id="tarifaPersonalizada" min="0.5" step="0.5" placeholder="Ej: 3.50" />
+            </div>
+
+            <div class="form-group">
+              <label for="distanciaNormal">Distancia normal (km)</label>
+              <input type="number" id="distanciaNormal" min="0.1" step="0.1" placeholder="Ej: 8" />
+            </div>
+
+            <div class="form-group">
+              <label for="distanciaDesvio">Distancia con desvío / bloqueo (km)</label>
+              <input type="number" id="distanciaDesvio" min="0.1" step="0.1" placeholder="Ej: 14" />
+            </div>
+
+            <div class="form-group">
+              <label for="costoPorKm">Costo por km (Bs)</label>
+              <input type="number" id="costoPorKm" min="0.1" step="0.1" placeholder="Ej: 0.37" value="0.37" />
+              <small>Referencia: ~Bs 0,37/km en minibús tramo corto (3 Bs / 8 km promedio)</small>
+            </div>
+
+            <div class="form-group">
+              <label for="viajesSemana">Viajes de ida por semana</label>
+              <input type="number" id="viajesSemana" min="1" max="100" placeholder="Ej: 10" />
+            </div>
+
+            <div class="form-group">
+              <label for="semanasMes">Semanas por mes</label>
+              <select id="semanasMes">
+                <option value="4">4 semanas</option>
+                <option value="4.3" selected>4,3 semanas (promedio)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="personas">Número de personas</label>
+              <input type="number" id="personas" min="1" max="20" placeholder="Ej: 2" value="1" />
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-calcular" id="btnCalcular" onclick="calcular()">Calcular gasto ➜</button>
+            <button class="btn-limpiar" id="btnLimpiar" onclick="limpiarFormulario()">Limpiar</button>
+          </div>
+
+          <div id="errorMsg" class="error-msg" style="display:none;"></div>
+        </div>
+      </div>
+    </section>
+    <section id="resultados" class="section-resultados">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Resultados</span>
+          <h2>Tu análisis de gasto</h2>
+        </div>
+        <div id="resultadosContainer" class="resultados-placeholder">
+          <div class="placeholder-icon">📊</div>
+          <p>Los resultados aparecerán aquí después de ingresar tus datos en el simulador.</p>
+        </div>
+      </div>
+    </section>
+    <section id="casos" class="section-casos">
+      <div class="container">
+        <div class="section-header light">
+          <span class="section-tag alt">Casos de estudio para probar</span>
+          <h2>Ejemplos con datos reales de La Paz</h2>
+          <p>Haz clic en cualquier caso para cargarlo automáticamente en el simulador.</p>
+        </div>
+
+        <div class="casos-grid">
+
+          <div class="caso-card" onclick="cargarCaso(1)">
+            <div class="caso-num">01</div>
+            <h3>Trabajador zona Sur con bloqueo</h3>
+            <p>Un trabajador que viaja de Sopocachi al centro en minibús, ruta normal 6 km, con bloqueo en el Prado debe rodear 11 km.</p>
+            <table class="caso-tabla">
+              <tr><td>Tipo vehículo</td><td><strong>Minibús tramo corto</strong></td></tr>
+              <tr><td>Distancia normal</td><td><strong>6 km</strong></td></tr>
+              <tr><td>Distancia con desvío</td><td><strong>11 km</strong></td></tr>
+              <tr><td>Viajes/semana</td><td><strong>10 (ida y vuelta, 5 días)</strong></td></tr>
+              <tr><td>Personas</td><td><strong>1</strong></td></tr>
+            </table>
+            <span class="caso-btn">▶ Cargar este caso</span>
+          </div>
+
+          <div class="caso-card" onclick="cargarCaso(2)">
+            <div class="caso-num">02</div>
+            <h3>Familia con 2 hijos universitarios</h3>
+            <p>Familia de 4 personas en Miraflores; 2 padres y 2 hijos usan trufi. Marcha en la Ciudad Universitaria alarga la ruta de 8 a 15 km.</p>
+            <table class="caso-tabla">
+              <tr><td>Tipo vehículo</td><td><strong>Trufi tramo largo</strong></td></tr>
+              <tr><td>Distancia normal</td><td><strong>8 km</strong></td></tr>
+              <tr><td>Distancia con desvío</td><td><strong>15 km</strong></td></tr>
+              <tr><td>Viajes/semana</td><td><strong>12</strong></td></tr>
+              <tr><td>Personas</td><td><strong>4</strong></td></tr>
+            </table>
+            <span class="caso-btn">▶ Cargar este caso</span>
+          </div>
+
+          <div class="caso-card" onclick="cargarCaso(3)">
+            <div class="caso-num">03</div>
+            <h3>Estudiante en micro nocturno</h3>
+            <p>Estudiante que trabaja por la noche en zona Sur. Ruta normal 5 km. Con desvío por conflicto social recorre 9 km en micro nocturno.</p>
+            <table class="caso-tabla">
+              <tr><td>Tipo vehículo</td><td><strong>Minibús nocturno</strong></td></tr>
+              <tr><td>Distancia normal</td><td><strong>5 km</strong></td></tr>
+              <tr><td>Distancia con desvío</td><td><strong>9 km</strong></td></tr>
+              <tr><td>Viajes/semana</td><td><strong>6</strong></td></tr>
+              <tr><td>Personas</td><td><strong>1</strong></td></tr>
+            </table>
+            <span class="caso-btn">▶ Cargar este caso</span>
+          </div>
+
+          <div class="caso-card" onclick="cargarCaso(4)">
+            <div class="caso-num">04</div>
+            <h3>Vendedora de mercado en micro</h3>
+            <p>Vendedora del mercado Rodríguez que toma micro todos los días. Ruta normal 4 km. Bloqueo en la Max Paredes obliga a un desvío de 7 km.</p>
+            <table class="caso-tabla">
+              <tr><td>Tipo vehículo</td><td><strong>Micro / Bus</strong></td></tr>
+              <tr><td>Distancia normal</td><td><strong>4 km</strong></td></tr>
+              <tr><td>Distancia con desvío</td><td><strong>7 km</strong></td></tr>
+              <tr><td>Viajes/semana</td><td><strong>14 (ida y vuelta, 7 días)</strong></td></tr>
+              <tr><td>Personas</td><td><strong>1</strong></td></tr>
+            </table>
+            <span class="caso-btn">▶ Cargar este caso</span>
+          </div>
+
+          <div class="caso-card" onclick="cargarCaso(5)">
+            <div class="caso-num">05</div>
+            <h3>Adulto mayor con tarifa diferenciada</h3>
+            <p>Adulto mayor que usa la tarifa preferencial. Ruta al hospital de 3 km, con desvío por marcha llega a 6 km. 3 viajes por semana.</p>
+            <table class="caso-tabla">
+              <tr><td>Tipo vehículo</td><td><strong>Tarifa diferenciada</strong></td></tr>
+              <tr><td>Distancia normal</td><td><strong>3 km</strong></td></tr>
+              <tr><td>Distancia con desvío</td><td><strong>6 km</strong></td></tr>
+              <tr><td>Viajes/semana</td><td><strong>3</strong></td></tr>
+              <tr><td>Personas</td><td><strong>1</strong></td></tr>
+            </table>
+            <span class="caso-btn">▶ Cargar este caso</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section id="conclusiones" class="section-conclusiones">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Conclusiones</span>
+          <h2>¿Qué nos enseña este simulador?</h2>
+        </div>
+        <div class="conclusiones-grid">
+          <div class="concl-item">
+            <span class="concl-num">01</span>
+            <div>
+              <h3>El incremento tarifario tiene impacto real</h3>
+              <p>El alza del 25% en el precio del minibús (de Bs 2,40 a Bs 3,00) parece pequeña, pero multiplicada por los viajes diarios de toda una familia, representa un gasto mensual adicional de decenas a cientos de bolivianos.</p>
+            </div>
+          </div>
+          <div class="concl-item">
+            <span class="concl-num">02</span>
+            <div>
+              <h3>Los desvíos amplifican el problema</h3>
+              <p>Cuando los bloqueos o marchas fuerzan rutas más largas, el costo no solo aumenta por la tarifa del pasaje, sino también por el tiempo adicional de viaje y el mayor consumo de combustible del vehículo.</p>
+            </div>
+          </div>
+          <div class="concl-item">
+            <span class="concl-num">03</span>
+            <div>
+              <h3>Las familias numerosas son las más afectadas</h3>
+              <p>Una familia de 4 personas que toma transporte a diario puede ver aumentado su gasto mensual en transporte hasta en un 40–50% solo por el efecto combinado del alza tarifaria y los desvíos frecuentes.</p>
+            </div>
+          </div>
+          <div class="concl-item">
+            <span class="concl-num">04</span>
+            <div>
+              <h3>Aprendizaje técnico</h3>
+              <p>Este proyecto permitió aplicar HTML5 semántico, CSS responsivo, manipulación del DOM con JavaScript y modelado de problemas reales mediante fórmulas matemáticas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">🚌 simulador</div>
+      <div class="footer-info">
+        <p><strong>Proyecto:</strong> Desafío Final</p>
+        <p><strong>Tema:</strong> Simulador de costo de transporte en contexto de crisis</p>
+      </div>
+      <div class="footer-credits">
+        <p>Datos de referencia basados en las tarifas oficiales fijadas por la Alcaldía de La Paz tras el Decreto Supremo 5503.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js\script.js"></script>
+</body>
+</html>
